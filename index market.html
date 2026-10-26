@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090b0f">
+<title>Market Lens — Demo</title>
+<style>
+:root{--bg:#090b0f;--panel:#12161d;--panel2:#191f28;--text:#f4f6fa;--muted:#8d98a8;--yellow:#f6d62e;--green:#35d39a;--red:#ff6473;--line:#28303b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.app{max-width:480px;margin:auto;min-height:100vh;padding:18px 16px calc(28px + env(safe-area-inset-bottom))}
+.top{display:flex;align-items:center;justify-content:space-between;margin:8px 0 22px}.brand{font-size:19px;font-weight:850;letter-spacing:.2px}.brand span{color:var(--yellow)}.pill{border:1px solid var(--line);border-radius:999px;padding:7px 10px;color:var(--muted);font-size:12px}
+h1{font-size:25px;margin:0 0 7px;letter-spacing:-.6px} .sub{color:var(--muted);margin:0 0 20px;line-height:1.45}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;margin:13px 0}
+.label{display:block;color:var(--muted);font-size:12px;margin:0 0 8px;text-transform:uppercase;letter-spacing:.8px;font-weight:700}
+.row{display:flex;gap:10px}.field{flex:1;min-width:0}select,input,button{font:inherit}select{width:100%;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:13px 10px;outline:none}
+.chart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.price{font-size:23px;font-weight:800}.change{color:var(--green);font-size:12px;margin-top:4px}
+.chart{height:175px;border-radius:12px;background:linear-gradient(180deg,rgba(53,211,154,.08),transparent 80%),#0d1117;overflow:hidden;border:1px solid #202833}
+.chart svg{width:100%;height:100%;display:block}.upload{display:block;width:100%;border:1px dashed #424b59;border-radius:12px;padding:15px;text-align:center;color:var(--muted);background:#0e1218}
+.upload input{display:none}.preview{max-width:100%;max-height:170px;display:none;margin:12px auto 0;border-radius:10px}
+.primary{width:100%;border:0;border-radius:13px;background:var(--yellow);color:#171606;font-weight:850;padding:15px;margin-top:12px}
+.secondary{border:1px solid var(--line);border-radius:12px;background:var(--panel2);color:var(--text);padding:10px 12px}
+.result{display:none}.signal{display:flex;align-items:center;gap:10px;font-weight:850;font-size:21px}.dot{width:11px;height:11px;border-radius:50%;background:var(--yellow)}.result p{color:var(--muted);line-height:1.5;font-size:13px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:13px}.stat{background:var(--panel2);padding:11px;border-radius:12px}.stat small{display:block;color:var(--muted);font-size:10px;margin-bottom:6px}.stat b{font-size:13px}
+.disclaimer{font-size:11px;color:#788392;line-height:1.5;text-align:center;margin:18px 4px}.nav{display:flex;justify-content:space-around;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:11px}.nav b{color:var(--yellow)}
+</style>
+</head>
+<body>
+<main class="app">
+  <div class="top"><div class="brand">MARKET <span>LENS</span></div><div class="pill">PROTOTYPE · DEMO</div></div>
+  <h1>Market prediction</h1>
+  <p class="sub">Semak carta dan bina aliran analisis pasaran dalam satu paparan.</p>
+
+  <section class="card">
+    <div class="row">
+      <div class="field"><label class="label" for="asset">Aset</label><select id="asset"><option>XAUUSD · Gold</option><option>EURUSD</option><option>GBPUSD</option><option>BTCUSD</option></select></div>
+      <div class="field"><label class="label" for="tf">Timeframe</label><select id="tf"><option>M1</option><option selected>M5</option><option>M15</option><option>M30</option><option>H1</option><option>H4</option></select></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="chart-head"><div><div class="label">Live chart area</div><div class="price" id="price">2,345.60</div><div class="change">Chart ilustrasi · bukan harga langsung</div></div><button class="secondary" id="refresh">Refresh demo</button></div>
+    <div class="chart">
+      <svg viewBox="0 0 360 175" preserveAspectRatio="none" aria-label="Carta ilustrasi">
+        <g stroke="#27313c" stroke-width="1"><path d="M0 35H360M0 70H360M0 105H360M0 140H360"/><path d="M60 0V175M120 0V175M180 0V175M240 0V175M300 0V175"/></g>
+        <path d="M0 124 L18 116 L32 128 L48 92 L65 102 L82 78 L99 91 L115 62 L132 72 L148 55 L166 76 L182 65 L198 88 L215 70 L231 83 L249 48 L265 58 L283 38 L300 52 L318 26 L337 40 L360 18" fill="none" stroke="#f6d62e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M0 124 L18 116 L32 128 L48 92 L65 102 L82 78 L99 91 L115 62 L132 72 L148 55 L166 76 L182 65 L198 88 L215 70 L231 83 L249 48 L265 58 L283 38 L300 52 L318 26 L337 40 L360 18 L360 175 L0 175Z" fill="url(#unused)" opacity=".05"/>
+      </svg>
+    </div>
+    <label class="label" style="margin-top:16px">Atau muat naik screenshot carta</label>
+    <label class="upload" for="shot">＋ Pilih gambar daripada Photos / Files<input id="shot" type="file" accept="image/*"></label>
+    <img class="preview" id="preview" alt="Pratonton screenshot carta">
+    <button class="primary" id="analyze">ANALYZE CHART</button>
+  </section>
+
+  <section class="card result" id="result">
+    <div class="label">Demo result</div>
+    <div class="signal"><span class="dot" id="dot"></span><span id="direction">NEUTRAL</span></div>
+    <p id="explain">Ini hanya contoh paparan. Belum ada model analisis sebenar atau sambungan data pasaran.</p>
+    <div class="stats"><div class="stat"><small>ENTRY</small><b id="entry">—</b></div><div class="stat"><small>TAKE PROFIT</small><b>Belum ditetapkan</b></div><div class="stat"><small>STOP LOSS</small><b>Belum ditetapkan</b></div></div>
+  </section>
+
+  <p class="disclaimer">Prototaip untuk menguji reka bentuk dan aliran aplikasi. Harga serta keputusan adalah ilustrasi, bukan signal trading sebenar atau nasihat kewangan.</p>
+  <div class="nav"><b>⌂ Home</b><span>◫ Chart</span><span>◉ History</span><span>⚙ Settings</span></div>
+</main>
+<script>
+const fileInput=document.getElementById('shot'), preview=document.getElementById('preview');
+fileInput.addEventListener('change',()=>{
+  const f=fileInput.files&&fileInput.files[0]; if(!f)return;
+  preview.src=URL.createObjectURL(f); preview.style.display='block';
+});
+document.getElementById('analyze').addEventListener('click',()=>{
+  const r=document.getElementById('result'); r.style.display='block';
+  document.getElementById('direction').textContent='DEMO ONLY';
+  document.getElementById('dot').style.background='#f6d62e';
+  document.getElementById('explain').textContent='Analisis sebenar belum disambungkan. Versi ini hanya menguji paparan keputusan; ia tidak membaca screenshot atau meramal harga.';
+  document.getElementById('entry').textContent='—';
+  r.scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+document.getElementById('refresh').addEventListener('click',()=>{
+  document.getElementById('price').textContent='2,345.60';
+});
+</script>
+</body>
+</html>
